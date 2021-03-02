@@ -1,8 +1,23 @@
-# jgen
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnikitaksv%2Fjgen.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnikitaksv%2Fjgen?ref=badge_shield)
+# Gendata Service
 
-Generator JSON5 -> (go strcuts, php class, java class and more)
+This is the Gendata service
 
+Generated with
 
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnikitaksv%2Fjgen.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnikitaksv%2Fjgen?ref=badge_large)
+```
+micro new gendata
+```
+
+## Usage
+
+Generate the proto code
+
+```
+make proto
+```
+
+Run the service
+
+```
+micro run .
+```

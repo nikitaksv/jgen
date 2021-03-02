@@ -1,0 +1,34 @@
+POST http://localhost:8080/generate
+Content-Type: application/json
+Accept: application/json
+Origin: http://localhost:8080
+Access-Control-Request-Method: POST
+
+{
+  "schema": {
+    "content": "",
+    "type": "json",
+    "options": {
+      "splitObjectsIntoFiles": true,
+      "typeAliases": {
+        "null": "null",
+        "int": "int",
+        "string": "string",
+        "bool": "bool",
+        "float": "float",
+        "object": "object",
+        "array": "array",
+        "arrayObject": "object[]",
+        "arrayInt": "int[]",
+        "arrayString": "string[]",
+        "arrayBool": "bool[]",
+        "arrayFloat": "float[]"
+      }
+    }
+  },
+  "template": {
+    "content": "<?php\nnamespace common\\models;\nusing yii\\base\\BaseObject;\n/***\n * Class {{ .Key.PascalCase }}\n * @package common\\models\n */\nclass {{ .Key.PascalCase }} extends BaseObject\n{ \n{{ range .Properties }}\n\t/**\n\t * @var {{if .Type.IsObject}}{{.Key.PascalCase}}{{else}}{{ .Type }}{{end}}\n\t */\n\tpublic ${{ .Key.CamelCase }};\n{{end}}\n}"
+  }
+}
+
+###

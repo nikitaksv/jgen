@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package gendata;
+
+import "google/api/field_behavior.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto;gendata";
+
+service Gendata {
+  rpc Generate(GenerateRequest) returns (GenerateResponse)  {
+    option (google.api.http) = {post: "/generate"; body: "*";};
+  }
+}
+
+message GenerateRequest {
+  Template template = 1;
+  Schema schema = 2;
+}
+
+message GenerateResponse {
+  repeated File files = 1;
+}
+
+message File {
+  string content = 1;
+  string extension = 2;
+  string name = 3;
+}
+
+message Template {
+  string content = 1  [(google.api.field_behavior) = REQUIRED];
+}
+
+message Schema {
+  string content = 1  [(google.api.field_behavior) = REQUIRED];
+  string type = 2  [(google.api.field_behavior) = REQUIRED];
+  Options options = 4;
+}
+
+message Options {
+  bool split_objects_into_files = 1;
+  bool sort_schema_fields = 2;
+  Types type_aliases = 3;
+  string root_name = 4;
+  string class_prefix = 5;
+}
+
+message Types {
+  string null = 1;
+  string int = 2;
+  string string = 3;
+  string bool = 4;
+  string float = 5;
+  string object = 6;
+  string array = 7;
+  string array_object = 8;
+  string array_int = 9;
+  string array_string = 10;
+  string array_bool = 11;
+  string array_float = 12;
+}
